@@ -20,8 +20,8 @@
 
 int main ()
 {
-    cliPrompt ();
-    csvReader ();
+    std::string inputFileName = cliPrompt ();
+    std::vector<InputRow> data = csvReader (inputFileName);
 
     quantitativeComputations ();
     statisticalComputations ();

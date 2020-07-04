@@ -3,6 +3,6 @@
 
 #include "./cli-prompt.cpp"
 
-int cliPrompt ();
+std::string cliPrompt ();
 
 #endif
