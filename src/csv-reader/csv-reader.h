@@ -3,6 +3,6 @@
 
 #include "./csv-reader.cpp"
 
-int csvReader ();
+std::vector<InputRow> csvReader (std::string fileName);
 
 #endif
