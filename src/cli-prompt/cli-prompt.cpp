@@ -8,9 +8,15 @@ const std::string defaultInputExampleFileName = "input-example.csv";
  */
 bool fileExists (const std::string &fileName)
 {
-    std::ifstream f (fileName.c_str ());
-
-    return f.good ();
+    if (FILE *file = fopen (fileName.c_str (), "r"))
+    {
+        fclose (file);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
