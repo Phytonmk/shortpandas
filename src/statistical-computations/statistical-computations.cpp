@@ -1,6 +1,6 @@
 /**
  * Функция для вычисления статистических характеристик
-	Hello world!
+  Hello world!
  */
 int statisticalComputations ()
 {
