@@ -165,53 +165,59 @@ std::vector<InputRow> csvReader (std::string fileName)
     {
         std::vector<std::string> cells = splitString (rowString, ',');
 
-        InputRow row = { "unknown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        InputRow row = { "unknown", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
         for (int i = 0; i < cells.size (); i++)
         {
+            std::string cellValue = cells.at (i);
+            if (cellValue.empty ())
+            {
+                continue;
+            }
+
             if (columnIndexes.country == i)
             {
-                row.country = cells.at (i);
+                row.country = cellValue;
             }
             else if (columnIndexes.year == i)
             {
-                row.year = ::atof (cells.at (i).c_str ());
+                row.year = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.crop_land == i)
             {
-                row.crop_land = ::atof (cells.at (i).c_str ());
+                row.crop_land = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.grazing_land == i)
             {
-                row.grazing_land = ::atof (cells.at (i).c_str ());
+                row.grazing_land = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.forest_land == i)
             {
-                row.forest_land = ::atof (cells.at (i).c_str ());
+                row.forest_land = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.fishing_ground == i)
             {
-                row.fishing_ground = ::atof (cells.at (i).c_str ());
+                row.fishing_ground = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.built_up_land == i)
             {
-                row.built_up_land = ::atof (cells.at (i).c_str ());
+                row.built_up_land = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.carbon == i)
             {
-                row.carbon = ::atof (cells.at (i).c_str ());
+                row.carbon = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.total == i)
             {
-                row.total = ::atof (cells.at (i).c_str ());
+                row.total = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.percapita == i)
             {
-                row.percapita = ::atof (cells.at (i).c_str ());
+                row.percapita = ::atof (cellValue.c_str ());
             }
             else if (columnIndexes.population == i)
             {
-                row.population = ::atof (cells.at (i).c_str ());
+                row.population = ::atof (cellValue.c_str ());
             }
         }
         result.push_back (row);
