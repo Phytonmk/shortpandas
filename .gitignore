@@ -31,3 +31,8 @@
 *.out
 *.app
 executable
+src/dev
+
+# Editors Config
+.vscode
+dev.dSYM

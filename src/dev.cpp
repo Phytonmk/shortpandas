@@ -1,5 +1,5 @@
-// #include "./cli-prompt/cli-prompt.h"
-#include "./correlation-analysis/correlation-analysis.h"
+#include "./cli-prompt/cli-prompt.h"
+// #include "./correlation-analysis/correlation-analysis.h"
 // #include "./csv-reader/csv-reader.h"
 // #include "./histograms-render/histograms-render.h"
 // #include "./output/output.h"
@@ -19,5 +19,6 @@
 int main ()
 {
     std::cout << "Dev mode\n";
-    correlationAnalysis ();
+    std::cout << cliPrompt ();
+    // std::cout << csvReader ("./input-example.csv")[1];
 }
