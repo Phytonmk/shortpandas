@@ -4,7 +4,7 @@
 #include <vector>
 #include <set>
 #include <iostream>
-#include "/home/sanyok/shortpandas/src/csv-reader/csv-reader.h"
+#include "../csv-reader/csv-reader.h"
 
 int quantitativeComputations (std::vector<InputRow> data)
 {
