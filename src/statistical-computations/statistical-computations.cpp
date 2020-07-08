@@ -1,13 +1,13 @@
 /**
  * Функция для вычисления статистических характеристик
-  
+
  */
 #include "../csv-reader/csv-reader.h"
-#include <math.h>
-#include <cstdlib>
-#include <vector>
 #include <algorithm>
+#include <cstdlib>
 #include <iostream>
+#include <math.h>
+#include <vector>
 
 
 struct Columns
@@ -23,7 +23,6 @@ struct Columns
     long double total;
     long double percapita;
     long double population;
-
 };
 
 struct Account // структура для хранения количетва строк на страну
@@ -55,16 +54,20 @@ void Simple_calculation(std:: vector <long double> array, int beg, int end, long
     else {
         quartile_25=(array.at(floor(num_quart)-1)+array.at(ceil(num_quart)-1))/2; //если коэф дробный
     }
-
-    num_quart = (quantity+1)*(0.75);
-    if (num_quart == round(num_quart))
+    else
     {
-        quartile_75=array.at(num_quart);
-    }
-    else {
-        quartile_75=(array.at(floor(num_quart)-1)+array.at(ceil(num_quart)-1))/2;
+        quartile_25 = (array.at (floor (num_quart) - 1) + array.at (ceil (num_quart) - 1)) / 2;
     }
 
+    num_quart = (quantity + 1) * (0.75);
+    if (num_quart == round (num_quart))
+    {
+        quartile_75 = array.at (num_quart);
+    }
+    else
+    {
+        quartile_75 = (array.at (floor (num_quart) - 1) + array.at (ceil (num_quart) - 1)) / 2;
+    }
 }
 
 //Ф-я для вычисления среднего и среденеквадратичного значений
@@ -81,7 +84,7 @@ void Square_dev_calculation(std:: vector <long double> array, int beg, int end, 
     square_deviation = sqrt(sum/(quantity-1)); //среднеквадратичное отклонение
 }
 
-int statisticalComputations (std::vector <InputRow> data)
+int statisticalComputations (std::vector<InputRow> data)
 {
     // перечисление векторов, в которых будут хранится значения вычисляемых параметров
     std:: vector <Columns> min;
@@ -122,10 +125,8 @@ int statisticalComputations (std::vector <InputRow> data)
             counter.at(num_countr).country=data.at(i-1).country;
             if (i == data.size()-1) //для последнего значения в главном векторе
             {
-                array.push_back(data.at(i).crop_land);
-                sum.crop_land+=data.at(i).crop_land;
-                counter.at(num_countr).point_end = i;
-                i++;
+                i--;
+                counter.at (num_countr).point_beg = i;
             }
             
             /* */ sort(array.begin(), array.end()); //сортировка по возрастанию

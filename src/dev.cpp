@@ -4,7 +4,7 @@
 // #include "./histograms-render/histograms-render.h"
 // #include "./output/output.h"
 // #include "./quantitative-computations/quantitative-computations.h"
- #include "./statistical-computations/statistical-computations.h"
+#include "./statistical-computations/statistical-computations.h"
 
 #include "iostream"
 
@@ -20,9 +20,9 @@ int main ()
 {
     std::cout << "Dev mode\n";
     std::string inputFileName = cliPrompt ();
-    //std::vector<InputRow> data = csvReader (inputFileName);
+    // std::vector<InputRow> data = csvReader (inputFileName);
     std::vector<InputRow> data = csvReader ("./input-example.csv");
     statisticalComputations (data);
-    //std::cout << cliPrompt ();
+    // std::cout << cliPrompt ();
     // std::cout << csvReader ("./input-example.csv")[1];
 }
