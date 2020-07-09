@@ -10,21 +10,6 @@
 #include <vector>
 
 
-struct Columns
-{
-    std::string country;
-    int year;
-    long double crop_land;
-    long double grazing_land;
-    long double forest_land;
-    long double fishing_ground;
-    long double built_up_land;
-    long double carbon;
-    long double total;
-    long double percapita;
-    long double population;
-};
-
 struct Account // структура для хранения количетва строк на страну
 {
     std::string country;
@@ -63,10 +48,6 @@ void Simple_calculation (std::vector<long double> array,
     {
         quartile_25 = (array.at (floor (num_quart) - 1) + array.at (ceil (num_quart) - 1)) / 2; //если коэф дробный
     }
-    else
-    {
-        quartile_25 = (array.at (floor (num_quart) - 1) + array.at (ceil (num_quart) - 1)) / 2;
-    }
 
     num_quart = (quantity + 1) * (0.75);
     if (num_quart == round (num_quart))
@@ -98,24 +79,27 @@ void Square_dev_calculation (std::vector<long double> array,
     square_deviation = sqrt (sum / (quantity - 1)); //среднеквадратичное отклонение
 }
 
-int statisticalComputations (std::vector<InputRow> data)
+int statisticalComputations (std::vector<InputRow> data,
+                             std::vector<InputRow> &min,
+                             std::vector<InputRow> &max,
+                             std::vector<InputRow> &average,
+                             std::vector<InputRow> &median,
+                             std::vector<InputRow> &quartile_25,
+                             std::vector<InputRow> &quartile_75,
+                             std::vector<InputRow> &square_deviation)
 {
     // перечисление векторов, в которых будут хранится значения вычисляемых параметров
-    std::vector<Columns> min;
-    std::vector<Columns> max;
-    std::vector<Columns> average;
-    std::vector<Columns> median;
-    std::vector<Columns> quartile_25;
-    std::vector<Columns> quartile_75;
-    std::vector<Columns> square_deviation;
+
     std::vector<Account> counter;
     std::vector<long double> array;
     int num_countr = 0; //индекс текущей страны
-    for (int i = 0; i < data.size (); i++) // ошибка где-то тут data.size()
+    for (int i = 0; i < data.size (); i++)
     {
         array.clear (); //очистка вектора
-        Columns sum = { "unknown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //модель для добавления в вектор
+        InputRow sum = { "unknown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //модель для добавления в вектор
+        sum.country = data.at (i).country; //страна, которая сейчас обрабатывается
         Account nulln = { "unknown", 0, 0 };
+        //добавление значение в конец векторов
         counter.push_back (nulln);
         min.push_back (sum);
         max.push_back (sum);
@@ -125,13 +109,14 @@ int statisticalComputations (std::vector<InputRow> data)
         quartile_75.push_back (sum);
         square_deviation.push_back (sum);
         counter.at (num_countr).point_beg = i; //присвоение первого вхождения в страну
+
+        if (num_countr != 0 && data.at (i - 1).country != data.at (i - 2).country) //чтобы учесть строку, которая может потеряться при переходе на другую страну
+        {
+            i--;
+            counter.at (num_countr).point_beg = i;
+        }
         do
         {
-            if (num_countr != 0 && data.at (i - 1).country != data.at (i - 2).country) //чтобы учесть строку, которая может потеряться при переходе на другую строку
-            {
-                i--;
-                counter.at (num_countr).point_beg = i;
-            }
             array.push_back (data.at (i).crop_land); //добавлние значения в вектор
             sum.crop_land += data.at (i).crop_land; // вычисление суммы всех значений столбца
             i++;
@@ -141,11 +126,12 @@ int statisticalComputations (std::vector<InputRow> data)
         counter.at (num_countr).country = data.at (i - 1).country;
         if (i == data.size () - 1) //для последнего значения в главном векторе
         {
-            i--;
-            counter.at (num_countr).point_beg = i;
+            array.push_back (data.at (i).crop_land);
+            sum.crop_land += data.at (i).crop_land;
+            counter.at (num_countr).point_end = i++;
         }
 
-        /* */ sort (array.begin (), array.end ()); //сортировка по возрастанию
+        sort (array.begin (), array.end ()); //сортировка по возрастанию
         Simple_calculation (array, counter.at (num_countr).point_beg, counter.at (num_countr).point_end,
                             min.at (num_countr).crop_land, max.at (num_countr).crop_land,
                             median.at (num_countr).crop_land, quartile_25.at (num_countr).crop_land,
@@ -273,7 +259,6 @@ int statisticalComputations (std::vector<InputRow> data)
         Square_dev_calculation (array, counter.at (num_countr).point_beg, counter.at (num_countr).point_end,
                                 sum.population, square_deviation.at (num_countr).population,
                                 average.at (num_countr).population);
-
         num_countr++; //переход к следующей стране
     }
 
