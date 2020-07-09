@@ -19,7 +19,7 @@
 int main ()
 {
     std::cout << "Dev mode\n";
-    //std::string inputFileName = cliPrompt ();
+    // std::string inputFileName = cliPrompt ();
     // std::vector<InputRow> data = csvReader (inputFileName);
     std::vector<InputRow> data = csvReader ("./input-example.csv");
     std::vector<InputRow> min;
@@ -30,7 +30,7 @@ int main ()
     std::vector<InputRow> quartile_75;
     std::vector<InputRow> square_deviation;
     statisticalComputations (data, min, max, average, median, quartile_25, quartile_75, square_deviation);
-    correlationAnalysis(data,average);
+    correlationAnalysis (data, average);
     // std::cout << cliPrompt ();
     // std::cout << csvReader ("./input-example.csv")[1];
 }
