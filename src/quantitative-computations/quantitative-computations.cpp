@@ -57,38 +57,36 @@ int quantitativeComputations (std::vector<InputRow> data, int &all, int &unique_
     std::multiset<std::string> countries;
     std::multiset<int> years;
     for (int i = 0; i < data.size (); i++) //записываем данные из столбца "страна" в коллекцию
-    empty_values=0;
-    empty_values=unique.count(-1);//количество пустых значений
-    int all_values=0;
-    all_values=unique.size()-empty_values;//количественные данные без пустых значений
-    std::multiset <std::string> countries;
-    std::multiset <int> years;
+        empty_values = 0;
+    empty_values = unique.count (-1); //количество пустых значений
+    int all_values = 0;
+    all_values = unique.size () - empty_values; //количественные данные без пустых значений
+    std::multiset<std::string> countries;
+    std::multiset<int> years;
     std::set<std::string> unique_countries;
     std::set<int> unique_years;
-    for (int i=0;i<data.size();i++)//записываем данные из столбца "страна" в коллекцию
+    for (int i = 0; i < data.size (); i++) //записываем данные из столбца "страна" в коллекцию
     {
-        countries.insert(data.at(i).country);
-        unique_countries.insert(data.at(i).country);
+        countries.insert (data.at (i).country);
+        unique_countries.insert (data.at (i).country);
     }
-    std::set<std::string>::iterator it1=unique_countries.begin();
-    while(it1!=unique_countries.end())//подсчет числа вхождений значения во множество
+    std::set<std::string>::iterator it1 = unique_countries.begin ();
+    while (it1 != unique_countries.end ()) //подсчет числа вхождений значения во множество
     {
-        if(countries.count(*it1)==1)
-            unique_values++;
+        if (countries.count (*it1) == 1) unique_values++;
         it1++;
     }
     int all_countries = 0;
     all_countries = countries.size (); //количество данных в столбце страны
     for (int i = 0; i < data.size (); i++) //записываем данные из столбца "год" в коллекцию
     {
-        years.insert(data.at(i).year);
-        unique_years.insert(data.at(i).year);
+        years.insert (data.at (i).year);
+        unique_years.insert (data.at (i).year);
     }
-    std::set<int>::iterator it2=unique_years.begin();
-    while(it2!=unique_years.end())//подсчет числа вхождений значения во множество
+    std::set<int>::iterator it2 = unique_years.begin ();
+    while (it2 != unique_years.end ()) //подсчет числа вхождений значения во множество
     {
-        if(years.count(*it2)==1)
-            unique_values++;
+        if (years.count (*it2) == 1) unique_values++;
         it2++;
     }
     int all_years = 0;
