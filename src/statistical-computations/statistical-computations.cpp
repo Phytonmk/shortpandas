@@ -80,13 +80,13 @@ void Square_dev_calculation (std::vector<long double> array,
 }
 
 int statisticalComputations (std::vector<InputRow> data,
-                             std::vector<InputRow>& min,
-                             std::vector<InputRow>& max,
-                             std::vector<InputRow>& average,
-                             std::vector<InputRow>& median,
-                             std::vector<InputRow>& quartile_25,
-                             std::vector<InputRow>& quartile_75,
-                             std::vector<InputRow>& square_deviation)
+                             std::vector<InputRow> &min,
+                             std::vector<InputRow> &max,
+                             std::vector<InputRow> &average,
+                             std::vector<InputRow> &median,
+                             std::vector<InputRow> &quartile_25,
+                             std::vector<InputRow> &quartile_75,
+                             std::vector<InputRow> &square_deviation)
 {
     // перечисление векторов, в которых будут хранится значения вычисляемых параметров
 
