@@ -22,7 +22,14 @@ int main ()
     std::string inputFileName = cliPrompt ();
     // std::vector<InputRow> data = csvReader (inputFileName);
     std::vector<InputRow> data = csvReader ("./input-example.csv");
-    statisticalComputations (data);
+    std::vector<InputRow> min;
+    std::vector<InputRow> max;
+    std::vector<InputRow> average;
+    std::vector<InputRow> median;
+    std::vector<InputRow> quartile_25;
+    std::vector<InputRow> quartile_75;
+    std::vector<InputRow> square_deviation;
+    statisticalComputations (data, min, max, average, median, quartile_25, quartile_75, square_deviation);
     // std::cout << cliPrompt ();
     // std::cout << csvReader ("./input-example.csv")[1];
 }
