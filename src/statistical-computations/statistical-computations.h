@@ -3,6 +3,6 @@
 
 #include "./statistical-computations.cpp"
 
-int statisticalComputations ();
+int statisticalComputations (std::vector<InputRow> data);
 
 #endif
