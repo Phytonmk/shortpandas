@@ -13,11 +13,10 @@ struct correlRate
 };
 
 /**
- * Функция для выполнения корреляционного анализа
+ * Функция для выполнения корреляционного анализа (расчет коэффициента Пирсона)
  */
-std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::vector <Columns> average)
+std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::vector <InputRow> average)
 {
-    std::vector<InputRow>::iterator it = data.begin();
     long double x_average, y_average;
     std::string current_country;
     std::vector<correlRate> correlation_analysis;
@@ -28,16 +27,19 @@ std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::v
     std::vector<long double> y_diff;
     std::vector<long double> x_diffSq;
     std::vector<long double> y_diffSq;
-    int i=1;
-    while(it!=data.end())
+    int i=0;
+    int key=0;
+    int data_size=data.size();
+    while(i<data_size)
     {
-        i=i-1;
         do//считываем нужные выборки по текущей стране
         {
             x.push_back(data.at(i).percapita);
             y.push_back(data.at(i).population);
             i++;
-        }while(data.at(i).country==data.at(i-1).country);
+            if(i==data_size)
+                key=1;
+        }while((key==0)&&(data.at(i).country==data.at(i-1).country));
         current_country=data.at(i-1).country;
         for(int j=0;j<average.size();j++)//считываем выборочные средние по текущей стране
         {
@@ -95,7 +97,6 @@ std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::v
         y_diff.clear();
         x_diffSq.clear();
         y_diffSq.clear();
-        it++;
     }
     return correlation_analysis;
 }
