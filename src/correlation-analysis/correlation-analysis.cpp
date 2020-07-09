@@ -15,7 +15,7 @@ struct correlRate
 /**
  * Функция для выполнения корреляционного анализа
  */
-std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::vector <Colums> average)
+std::vector<correlRate> correlationAnalysis (std::vector <InputRow> data, std::vector <Columns> average)
 {
     std::vector<InputRow>::iterator it = data.begin();
     long double x_average, y_average;
