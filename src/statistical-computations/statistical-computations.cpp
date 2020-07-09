@@ -90,7 +90,6 @@ int statisticalComputations (std::vector<InputRow> data,
 {
     // перечисление векторов, в которых будут хранится значения вычисляемых параметров
 
-
     std::vector<Account> counter;
     std::vector<long double> array;
     int num_countr = 0; //индекс текущей страны
@@ -260,7 +259,6 @@ int statisticalComputations (std::vector<InputRow> data,
         Square_dev_calculation (array, counter.at (num_countr).point_beg, counter.at (num_countr).point_end,
                                 sum.population, square_deviation.at (num_countr).population,
                                 average.at (num_countr).population);
-
         num_countr++; //переход к следующей стране
     }
 
