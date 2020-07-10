@@ -1,8 +1,10 @@
 #ifndef QUANTITATIVE_COMPUTATIONS
 #define QUANTITATIVE_COMPUTATIONS
 
+#include "../types.h"
 #include "./quantitative-computations.cpp"
 
-int quantitativeComputations ();
+
+Quantitatives quantitativeComputations (std::vector<InputRow> data);
 
 #endif
