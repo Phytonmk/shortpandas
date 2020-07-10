@@ -1,7 +1,29 @@
+#include "../types.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
 /**
  * Функция для вывода результатов вычислений в csv файл
  */
-int output ()
+void output (std::vector<InputRow> table, std::string filename, std::string tableHeader = inputRowHeader)
 {
-    return 0;
+    std::ofstream out (filename);
+    out << tableHeader << "\n";
+    for (int i = 0; i < table.size (); i++)
+    {
+        out << table[i] << "\n";
+    }
+    out.close ();
+}
+void output (std::vector<CorrelRate> table, std::string filename, std::string tableHeader = inputRowHeader)
+{
+    std::ofstream out (filename);
+    out << tableHeader << "\n";
+    for (int i = 0; i < table.size (); i++)
+    {
+        out << table[i] << "\n";
+    }
+    out.close ();
 }

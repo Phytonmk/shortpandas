@@ -2,8 +2,9 @@
 #include "./correlation-analysis/correlation-analysis.h"
 #include "./csv-reader/csv-reader.h"
 #include "./differences/differences.h"
+#include "./types.h"
 // #include "./histograms-render/histograms-render.h"
-// #include "./output/output.h"
+#include "./output/output.h"
 // #include "./quantitative-computations/quantitative-computations.h"
 #include "./statistical-computations/statistical-computations.h"
 
@@ -40,10 +41,34 @@ int main ()
     std::vector<InputRow> diff_quartile_25;
     std::vector<InputRow> diff_quartile_75;
     std::vector<InputRow> diff_square_deviation;
+
     statisticalComputations (data, diff_min, diff_max, diff_average, diff_median, diff_quartile_25,
                              diff_quartile_75, diff_square_deviation);
 
-    correlationAnalysis (data, average);
+    std::vector<CorrelRate> correlRate = correlationAnalysis (data, average);
+
+    output (data, "output/input.csv");
+
+    output (min, "output/statistical/min.csv");
+    output (max, "output/statistical/max.csv");
+    output (average, "output/statistical/average.csv");
+    output (median, "output/statistical/median.csv");
+    output (quartile_25, "output/statistical/quartile_25.csv");
+    output (quartile_75, "output/statistical/quartile_75.csv");
+    output (square_deviation, "output/statistical/square_deviation.csv");
+
+    output (diff_data, "output/statistical/diff.csv");
+    output (diff_min, "output/diff_statistical/min.csv");
+    output (diff_max, "output/diff_statistical/max.csv");
+    output (diff_average, "output/diff_statistical/average.csv");
+    output (diff_median, "output/diff_statistical/median.csv");
+    output (diff_quartile_25, "output/diff_statistical/quartile_25.csv");
+    output (diff_quartile_75, "output/diff_statistical/quartile_75.csv");
+    output (diff_square_deviation, "output/diff_statistical/square_deviation.csv");
+
+    output (correlRate, "output/correlation/correlation.csv", "contry,rate");
+
+    std::cout << "Done\n";
     // std::cout << cliPrompt ();
     // std::cout << csvReader ("./input-example.csv")[1];
 }

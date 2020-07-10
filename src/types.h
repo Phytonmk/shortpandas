@@ -30,4 +30,18 @@ struct InputRow
     }
 };
 
+struct CorrelRate
+{
+    std::string country;
+    long double rate;
+
+    friend std::ostream &operator<< (std::ostream &out, CorrelRate &row)
+    {
+        return out << row.country << "," << row.rate;
+    }
+};
+
+std::string inputRowHeader = "country,year,crop_land,grazing_land,forest_land,fishing_ground,built_"
+                             "up_land,carbon,total,percapita,population";
+
 #endif

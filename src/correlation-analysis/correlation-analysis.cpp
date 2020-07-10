@@ -1,26 +1,21 @@
 #include "../csv-reader/csv-reader.h"
 #include "../statistical-computations/statistical-computations.h"
+#include "../types.h"
 #include "cmath"
 #include <iostream>
 #include <string>
 #include <vector>
 
 
-struct correlRate
-{
-    std::string country;
-    long double rate;
-};
-
 /**
  * Функция для выполнения корреляционного анализа (расчет коэффициента Пирсона)
  */
-std::vector<correlRate> correlationAnalysis (std::vector<InputRow> data, std::vector<InputRow> average)
+std::vector<CorrelRate> correlationAnalysis (std::vector<InputRow> data, std::vector<InputRow> average)
 {
     long double x_average, y_average;
     std::string current_country;
-    std::vector<correlRate> correlation_analysis;
-    struct correlRate current_rate;
+    std::vector<CorrelRate> correlation_analysis;
+    struct CorrelRate current_rate;
     std::vector<long double> x;
     std::vector<long double> y;
     std::vector<long double> x_diff;
