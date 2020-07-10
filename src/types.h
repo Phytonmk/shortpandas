@@ -43,5 +43,12 @@ struct CorrelRate
 
 std::string inputRowHeader = "country,year,crop_land,grazing_land,forest_land,fishing_ground,built_"
                              "up_land,carbon,total,percapita,population";
+                             
+struct Quantitatives
+{
+    int all;
+    int unique;
+    int empty;
+};
 
 #endif
