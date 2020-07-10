@@ -1,6 +1,7 @@
 #include "./cli-prompt/cli-prompt.h"
 #include "./correlation-analysis/correlation-analysis.h"
 #include "./csv-reader/csv-reader.h"
+#include "./differences/differences.h"
 // #include "./histograms-render/histograms-render.h"
 // #include "./output/output.h"
 // #include "./quantitative-computations/quantitative-computations.h"
@@ -30,6 +31,18 @@ int main ()
     std::vector<InputRow> quartile_75;
     std::vector<InputRow> square_deviation;
     statisticalComputations (data, min, max, average, median, quartile_25, quartile_75, square_deviation);
+
+    std::vector<InputRow> diff_data = differences (data);
+    std::vector<InputRow> diff_min;
+    std::vector<InputRow> diff_max;
+    std::vector<InputRow> diff_average;
+    std::vector<InputRow> diff_median;
+    std::vector<InputRow> diff_quartile_25;
+    std::vector<InputRow> diff_quartile_75;
+    std::vector<InputRow> diff_square_deviation;
+    statisticalComputations (data, diff_min, diff_max, diff_average, diff_median, diff_quartile_25,
+                             diff_quartile_75, diff_square_deviation);
+
     correlationAnalysis (data, average);
     // std::cout << cliPrompt ();
     // std::cout << csvReader ("./input-example.csv")[1];
