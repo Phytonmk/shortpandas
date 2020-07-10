@@ -5,7 +5,7 @@
 #include "./types.h"
 // #include "./histograms-render/histograms-render.h"
 #include "./output/output.h"
-// #include "./quantitative-computations/quantitative-computations.h"
+#include "./quantitative-computations/quantitative-computations.h"
 #include "./statistical-computations/statistical-computations.h"
 
 #include "iostream"
@@ -45,6 +45,11 @@ int main ()
     statisticalComputations (data, diff_min, diff_max, diff_average, diff_median, diff_quartile_25,
                              diff_quartile_75, diff_square_deviation);
 
+    Quantitatives quantitatives = quantitativeComputations (data);
+    std::string quantitativesOutput = "all,unique,empty\n" + std::to_string (quantitatives.all) +
+                                      "," + std::to_string (quantitatives.unique) + "," +
+                                      std::to_string (quantitatives.empty) + "\n";
+
     std::vector<CorrelRate> correlRate = correlationAnalysis (data, average);
 
     output (data, "output/input.csv");
@@ -66,9 +71,9 @@ int main ()
     output (diff_quartile_75, "output/diff_statistical/quartile_75.csv");
     output (diff_square_deviation, "output/diff_statistical/square_deviation.csv");
 
-    output (correlRate, "output/correlation/correlation.csv", "contry,rate");
+    output (correlRate, "output/correlation.csv", "contry,rate");
+
+    outputString (quantitativesOutput, "output/quantitatives.csv");
 
     std::cout << "Done\n";
-    // std::cout << cliPrompt ();
-    // std::cout << csvReader ("./input-example.csv")[1];
 }

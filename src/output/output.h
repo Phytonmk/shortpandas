@@ -8,5 +8,6 @@
 
 void output (std::vector<InputRow> table, std::string filename, std::string tableHeader);
 void output (std::vector<CorrelRate> table, std::string filename, std::string tableHeader);
+void outputString (std::string content, std::string filename);
 
 #endif

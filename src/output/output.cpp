@@ -27,3 +27,10 @@ void output (std::vector<CorrelRate> table, std::string filename, std::string ta
     }
     out.close ();
 }
+
+void outputString (std::string content, std::string filename)
+{
+    std::ofstream out (filename);
+    out << content;
+    out.close ();
+}
