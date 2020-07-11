@@ -36,3 +36,7 @@ src/dev
 # Editors Config
 .vscode
 dev.dSYM
+
+# Mac
+
+.DS_Store

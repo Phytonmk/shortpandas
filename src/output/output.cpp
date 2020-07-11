@@ -16,6 +16,7 @@ void output (std::vector<InputRow> table, std::string filename, std::string tabl
         out << table[i] << "\n";
     }
     out.close ();
+    std::cout << "Wrote " << table.size () << " rows to " << filename << "\n";
 }
 void output (std::vector<CorrelRate> table, std::string filename, std::string tableHeader = inputRowHeader)
 {
@@ -26,6 +27,7 @@ void output (std::vector<CorrelRate> table, std::string filename, std::string ta
         out << table[i] << "\n";
     }
     out.close ();
+    std::cout << "Wrote " << table.size () << " rows to " << filename << "\n";
 }
 
 void outputString (std::string content, std::string filename)
@@ -33,4 +35,5 @@ void outputString (std::string content, std::string filename)
     std::ofstream out (filename);
     out << content;
     out.close ();
+    std::cout << "Wrote " << content.size () << " bytes to " << filename << "\n";
 }

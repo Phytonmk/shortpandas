@@ -2,15 +2,17 @@
 #include "./correlation-analysis/correlation-analysis.h"
 #include "./csv-reader/csv-reader.h"
 #include "./differences/differences.h"
-#include "./types.h"
-// #include "./histograms-render/histograms-render.h"
+#include "./histograms-render/histograms-render.h"
 #include "./output/output.h"
 #include "./quantitative-computations/quantitative-computations.h"
 #include "./statistical-computations/statistical-computations.h"
+#include "./types.h"
 #include <chrono>
 
 #include "iostream"
-
+/*
+** Главная функция программы
+*/
 int main ()
 {
     std::string inputFileName = cliPrompt ();
@@ -68,6 +70,42 @@ int main ()
     output (correlRate, "output/correlation.csv", "contry,rate");
 
     outputString (quantitativesOutput, "output/quantitatives.csv");
+
+    std::vector<std::vector<InputRow>> toRender = {
+        min,
+        max,
+        average,
+        median,
+        quartile_25,
+        quartile_75,
+        square_deviation,
+        diff_min,
+        diff_max,
+        diff_average,
+        diff_median,
+        diff_quartile_25,
+        diff_quartile_75,
+        diff_square_deviation,
+    };
+    std::vector<std::string> toRenderNames = {
+
+        "min",
+        "max",
+        "average",
+        "median",
+        "quartile_25",
+        "quartile_75",
+        "square_deviation",
+        "diff_min",
+        "diff_max",
+        "diff_average",
+        "diff_median",
+        "diff_quartile_25",
+        "diff_quartile_75",
+        "diff_square_deviation",
+    };
+
+    histogramRender (toRender, toRenderNames, "output/barCharts");
 
     std::chrono::high_resolution_clock::time_point finish = std::chrono::high_resolution_clock::now ();
     long long durationMs = std::chrono::duration_cast<std::chrono::milliseconds> (finish - start).count ();
