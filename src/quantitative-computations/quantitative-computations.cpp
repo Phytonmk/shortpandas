@@ -7,7 +7,11 @@
 #include <vector>
 
 /**
- * Функция для вычисления количественных характеристик
+@brief Вычисление количественных характеристик выборки
+@detailed Данная функция вычисляет количественные 
+характеристики выборки и возвращает структуру с этими характеристиками
+@param Выборка данных
+@return Количественные характеристики
  */
 Quantitatives quantitativeComputations (std::vector<InputRow> data)
 {
@@ -84,6 +88,7 @@ Quantitatives quantitativeComputations (std::vector<InputRow> data)
     }
     int all_years = 0;
     all_years = years.size (); //количество данных в столбце год
+    all_values = all_values + all_years + all_countries;
 
     Quantitatives result = {
         .all = all_values,
