@@ -26,25 +26,32 @@ struct InputRow
     {
         if (row.country != "") out << "\"" << row.country << "\"";
         out << ",";
-        if (row.year != -1) out << row.year;
+        if (row.year != -1 && row.year != -11 && row.year != -2) out << row.year;
         out << ",";
-        if (row.crop_land != -1) out << row.crop_land;
+        if (row.crop_land != -1 && row.crop_land != -11 && row.crop_land != -2)
+            out << row.crop_land;
         out << ",";
-        if (row.grazing_land != -1) out << row.grazing_land;
+        if (row.grazing_land != -1 && row.grazing_land != -11 && row.grazing_land != -2)
+            out << row.grazing_land;
         out << ",";
-        if (row.forest_land != -1) out << row.forest_land;
+        if (row.forest_land != -1 && row.forest_land != -11 && row.forest_land != -2)
+            out << row.forest_land;
         out << ",";
-        if (row.fishing_ground != -1) out << row.fishing_ground;
+        if (row.fishing_ground != -1 && row.fishing_ground != -11 && row.fishing_ground != -2)
+            out << row.fishing_ground;
         out << ",";
-        if (row.built_up_land != -1) out << row.built_up_land;
+        if (row.built_up_land != -1 && row.built_up_land != -11 && row.built_up_land != -2)
+            out << row.built_up_land;
         out << ",";
-        if (row.carbon != -1) out << row.carbon;
+        if (row.carbon != -1 && row.carbon != -11 && row.carbon != -2) out << row.carbon;
         out << ",";
-        if (row.total != -1) out << row.total;
+        if (row.total != -1 && row.total != -11 && row.total != -2) out << row.total;
         out << ",";
-        if (row.percapita != -1) out << row.percapita;
+        if (row.percapita != -1 && row.percapita != -11 && row.percapita != -2)
+            out << row.percapita;
         out << ",";
-        if (row.population != -1) out << row.population;
+        if (row.population != -1 && row.population != -11 && row.population != -2)
+            out << row.population;
 
         return out;
     }
