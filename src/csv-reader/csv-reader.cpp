@@ -140,6 +140,15 @@ std::vector<InputRow> csvReader (std::string fileName)
     {
         std::vector<std::string> cells = splitString (rowString, ',');
 
+        if (rowString.at (0) == '"')
+        {
+            int secondQuote = rowString.find_last_of ('"');
+            std::string country = rowString.substr (1, secondQuote - 1);
+            rowString = rowString.substr (secondQuote + 1, rowString.size () - secondQuote);
+            cells = splitString ("country," + rowString, ',');
+            cells[0] = country;
+        }
+
         InputRow row = { "unknown", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
         for (int i = 0; i < cells.size (); i++)

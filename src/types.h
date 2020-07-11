@@ -24,7 +24,7 @@ struct InputRow
 
     friend std::ostream &operator<< (std::ostream &out, InputRow &row)
     {
-        if (row.country != "") out << row.country;
+        if (row.country != "") out << "\"" << row.country << "\"";
         out << ",";
         if (row.year != -1) out << row.year;
         out << ",";
