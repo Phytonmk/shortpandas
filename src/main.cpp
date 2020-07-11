@@ -10,7 +10,9 @@
 #include <chrono>
 
 #include "iostream"
-
+/*
+** Главная функция программы
+*/
 int main ()
 {
     std::string inputFileName = cliPrompt ();

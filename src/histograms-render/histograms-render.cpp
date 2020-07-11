@@ -16,7 +16,9 @@ int vercticalMarksCount = 10;
 
 int maxHeight = canvasHeight - verticalPadding * 2 - bottomNamesHeight;
 
-
+/**
+ * Функция возвращает значение из строки таблицы на основе индекса столбца
+ **/
 long double getValueOfColumnByIndex (InputRow row, int columnIndex)
 {
     switch (columnIndex)
@@ -46,11 +48,17 @@ long double getValueOfColumnByIndex (InputRow row, int columnIndex)
     return 0;
 }
 
+/**
+ * Функция переводит числовую переменную в строку с округлением до целого
+ **/
 std::__1::string toString (int __val)
 {
     return std::to_string (__val);
 }
 
+/**
+ * Функция возвращает название столбца таблицы на основе индекса
+ **/
 std::string getNameOfColumnByIndex (int columnIndex)
 {
     switch (columnIndex)
