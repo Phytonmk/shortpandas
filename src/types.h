@@ -24,9 +24,29 @@ struct InputRow
 
     friend std::ostream &operator<< (std::ostream &out, InputRow &row)
     {
-        return out << row.country << "," << row.year << "," << row.crop_land << "," << row.grazing_land
-                   << "," << row.forest_land << "," << row.fishing_ground << "," << row.built_up_land << ","
-                   << row.carbon << "," << row.total << "," << row.percapita << "," << row.population;
+        if (row.country != "") out << row.country;
+        out << ",";
+        if (row.year != -1) out << row.year;
+        out << ",";
+        if (row.crop_land != -1) out << row.crop_land;
+        out << ",";
+        if (row.grazing_land != -1) out << row.grazing_land;
+        out << ",";
+        if (row.forest_land != -1) out << row.forest_land;
+        out << ",";
+        if (row.fishing_ground != -1) out << row.fishing_ground;
+        out << ",";
+        if (row.built_up_land != -1) out << row.built_up_land;
+        out << ",";
+        if (row.carbon != -1) out << row.carbon;
+        out << ",";
+        if (row.total != -1) out << row.total;
+        out << ",";
+        if (row.percapita != -1) out << row.percapita;
+        out << ",";
+        if (row.population != -1) out << row.population;
+
+        return out;
     }
 };
 
