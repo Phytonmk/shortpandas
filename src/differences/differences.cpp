@@ -1,6 +1,13 @@
 #include "../types.h"
 #include <string>
 #include <vector>
+/**
+@brief Вычисление первых разностей для нахождения статистических характеристик
+@detailed Данная функция вычисляет первые разности по каждому столбцу в стране
+и возвращает выборку, содержащую разности
+@param Выборка данных
+@return Выборка первых разностей
+ */
 
 std::vector<InputRow> differences (std::vector<InputRow> inputData)
 {

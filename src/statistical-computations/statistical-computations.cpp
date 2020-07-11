@@ -1,7 +1,4 @@
-/**
- * Функция для вычисления статистических характеристик
 
- */
 #include "../csv-reader/csv-reader.h"
 #include <algorithm>
 #include <cstdlib>
@@ -17,8 +14,16 @@ struct Account // структура для хранения количетва 
     int point_end; //последнее значение страны
 };
 
-
-//Ф-я для вычисления минимального, максимального значений, медианы и квартилей
+/**
+@brief Вычисление минимального, максимального значений, медианы и квартилей
+@detailed Данная функция устанавливает максимальное и минимальное значения после 
+сортировки вектора и вычисляет медиану и квартили через нахождение номера нужной 
+ячейки вектора, а после записывает значения в параметры функции
+@param Вектор с частью выборки, индекс первой ячейки стрыны, индекс последней ячейки 
+страны, вектор для записи минимальных значений, вектор для записи максимальных значений, 
+вектор для записи медиан, вектор для записи квартилей 25% и 75%
+@return Не возвращает значений
+*/
 
 void Simple_calculation (std::vector<long double> array,
                          int beg,
@@ -60,7 +65,17 @@ void Simple_calculation (std::vector<long double> array,
     }
 }
 
-//Ф-я для вычисления среднего и среденеквадратичного значений
+
+/**
+@brief Вычисление среднего значения и среднеквадратичного отклонения
+@detailed Данная функция вычисляет среднеее значение по стране и 
+среднеквадратичное отклонение на основе полученного среднего значения,
+а после записывает значения в параметры функции.
+@param Вектор с частью выборки, индекс первой ячейки стрыны, индекс последней ячейки 
+страны, сумма всех ячеек столбца по стране, вектор для записи среднеквадратичного
+отклонения и среднего значения
+@return Не возвращает значений
+*/
 
 void Square_dev_calculation (std::vector<long double> array,
                              int beg,
@@ -79,6 +94,20 @@ void Square_dev_calculation (std::vector<long double> array,
     square_deviation = sqrt (sum / (quantity - 1)); //среднеквадратичное отклонение
 }
 
+
+/**
+@brief Обработка выборки и вычисление статистических характеристик
+@detailed Данная функция записывает в вектор часть выборки и отправляет 
+его в качестве аргумента в другие функциия для вычисление статистических 
+характеристик, а после записывает вектора со всеми полученными значениями 
+в параметры функции.
+@param Выборка данных,вектора для записи: минимальных, максимальных,
+средних значений, медианы, квартилей 25% и 75%, среднеквадратичного
+отклонения
+@return Не возвращает значений
+*/
+
+
 int statisticalComputations (std::vector<InputRow> data,
                              std::vector<InputRow> &min,
                              std::vector<InputRow> &max,
@@ -88,7 +117,7 @@ int statisticalComputations (std::vector<InputRow> data,
                              std::vector<InputRow> &quartile_75,
                              std::vector<InputRow> &square_deviation)
 {
-    // перечисление векторов, в которых будут хранится значения вычисляемых параметров
+
 
     std::vector<Account> counter;
     std::vector<long double> array;
@@ -108,9 +137,9 @@ int statisticalComputations (std::vector<InputRow> data,
         quartile_25.push_back (sum);
         quartile_75.push_back (sum);
         square_deviation.push_back (sum);
-        counter.at (num_countr).point_beg = i; //присвоение первого вхождения в страну
+        counter.at (num_countr).point_beg = i; //первое вхождения в страну
 
-        if (num_countr != 0 && data.at (i - 1).country != data.at (i - 2).country) //чтобы учесть строку, которая может потеряться при переходе на другую страну
+        if (num_countr != 0 && data.at (i - 1).country != data.at (i - 2).country) //учитываем строку при переходе на другую страну
         {
             i--;
             counter.at (num_countr).point_beg = i;
@@ -121,7 +150,7 @@ int statisticalComputations (std::vector<InputRow> data,
             sum.crop_land += data.at (i).crop_land; // вычисление суммы всех значений столбца
             i++;
         } while (data.at (i).country == data.at (i - 1).country &&
-                 i != data.size () - 1); //цикл, чтобы не выйти за пределы и не перейти в другую страну
+                 i != data.size () - 1); //цикл, чтобы не выйти за пределы страны
         counter.at (num_countr).point_end = i - 1;
         counter.at (num_countr).country = data.at (i - 1).country;
         if (i == data.size () - 1) //для последнего значения в главном векторе
