@@ -64,7 +64,7 @@ struct CorrelRate
 
     friend std::ostream &operator<< (std::ostream &out, CorrelRate &row)
     {
-        return out << row.country << "," << row.rate;
+        return out << "\"" << row.country << "\"," << row.rate;
     }
 };
 
