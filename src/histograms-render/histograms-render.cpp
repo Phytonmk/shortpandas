@@ -51,7 +51,7 @@ long double getValueOfColumnByIndex (InputRow row, int columnIndex)
 /**
  * Функция переводит числовую переменную в строку с округлением до целого
  **/
-std::__1::string toString (int __val)
+std::string toString (int __val)
 {
     return std::to_string (__val);
 }
@@ -85,7 +85,7 @@ std::string getNameOfColumnByIndex (int columnIndex)
         return "population";
     }
 
-    return "unknown" + toString (columnIndex);
+    return "unknown";
 }
 
 /**
